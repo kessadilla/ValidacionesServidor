@@ -25,11 +25,17 @@ repositories {
 }
 
 dependencies {
+    //@SpringBootApplication, @Controller, etc...
+    implementation 'org.springframework.boot:spring-boot-starter'
+    //@RequestMapping, @RequestMapping, etc...
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    compileOnly 'org.projectlombok:lombok'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    annotationProcessor 'org.projectlombok:lombok'
+    //Etiquetas de Thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    //validacion @NotBlank, etc
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 

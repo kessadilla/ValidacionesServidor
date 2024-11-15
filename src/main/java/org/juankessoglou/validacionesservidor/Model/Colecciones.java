@@ -1,5 +1,9 @@
 package org.juankessoglou.validacionesservidor.Model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,4 +35,10 @@ public class Colecciones {
         listaAficiones.put("P", "{valid-form.aficiones-pintura}");
         listaAficiones.put("V", "{valid-form.aficiones-viajes}");
     }
+
+    public static Map<String, String> getListaGeneros() { return listaGeneros; }
+    public static Map<String, Pais> getListaPaises() { return listaPaises; }
+    public static Map<String, String> getListaMusicas() { return listaMusicas; }
+    public static Map<String, String> getListaAficiones() { return listaAficiones; }
+
 }
