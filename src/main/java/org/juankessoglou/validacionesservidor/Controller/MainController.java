@@ -27,19 +27,26 @@ public class MainController {
         model.addAttribute("listaGeneros", Colecciones.getListaGeneros());
         model.addAttribute("listaAficiones", Colecciones.getListaAficiones());
         model.addAttribute("listaMusicas", Colecciones.getListaMusicas());
+        model.addAttribute("iteraciones", ++iteraciones);
     }
 
     @RequestMapping(value = "/devuelve-formulario", method = GET)
     public String devuelveFormulario(@ModelAttribute("datosFormulario") DatosFormulario datosFormulario, Model model) {
-        model.addAttribute("iteraciones", ++iteraciones);
         return "formulario";
     }
 
     // TODO cambiar a post
     @RequestMapping(value = "/recibe-parametros", method = GET)
-    public String recibeParametrosYRepinta(Model modelo,
+    public String recibeParametrosYRepinta(Model model,
                                            @Valid @ModelAttribute("datosFormulario") DatosFormulario datosFormulario,
                                            BindingResult bindingResult){
+        /*
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("mensajeNOK", "Error en el funcionamiento de la aplicación");
+            return "formulario";
+        }*/
+
+
         return "formulario";
     }
 }

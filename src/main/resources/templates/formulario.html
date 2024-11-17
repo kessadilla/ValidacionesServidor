@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{valid-form.formtitle}"></title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
 </head>
 <body>
     <h1 th:text="#{valid-form.formtitle}"></h1>
     <h2 th:text="#{valid-form.iteraciones} + ${' ' + iteraciones}"></h2>
+
+    <h3 class="error" th:text="${mensajeNOK}"></h3>
 
     <form action="/formulario/recibe-parametros" method="get"
         th:object="${datosFormulario}">
@@ -14,10 +17,14 @@
         <!--Datos de usuario-->
         <fieldset>
             <legend th:text="#{valid-form.datosusuario}"></legend><!--Campo de nombre-->
+
+            <!--Campo de nombre-->
             <label th:text="#{valid-form.nombre}" for="nombre"></label>
             <label>
-                <input type="text" th:field="*{nombre}">
+                <input type="text" th:field="*{nombre}" th:placeholder="#{valid-form.ph.nombre}">
             </label>
+            <div th:each="err: ${#fields.errors('nombre')}"
+                 th:text="${err}" class="error"></div>
 
 
             <!--Campo de clave-->
@@ -25,6 +32,8 @@
             <label>
                 <input type="password" th:field="*{clave}">
             </label>
+            <div th:each="err: ${#fields.errors('clave')}"
+                 th:text="${err}" class="error"></div>
 
 
             <!--Campo de confirmacion de clave-->
@@ -32,6 +41,8 @@
             <label>
                 <input type="password" th:field="*{confirmarClave}">
             </label>
+            <div th:each="err: ${#fields.errors('confirmarClave')}"
+                 th:text="${err}" class="error"></div>
 
             <!--Mostrar claves TODO implementar lógica-->
             <input type="button" th:value="#{valid-form.mostrarclave}">
@@ -42,13 +53,12 @@
             <legend th:text="#{valid-form.datospersonales}"></legend>
 
             <!--Campo de genero-->
-            <!--TODO th:checked-->
             <label th:text="#{valid-form.genero}" for="genero"></label>
             <label>
                 <input th:each="genero: ${listaGeneros}"
                     th:value="${genero.key}" th:text="${genero.value}"
                     type="radio" name="generoSeleccionado"
-                    >
+                    th:field="*{generoSeleccionado}">
             </label>
 
 
@@ -59,29 +69,34 @@
             <label>
                 <input type="text" th:field="*{fechaNacimiento}">
             </label>
+            <div th:each="err: ${#fields.errors('fechaNacimiento')}"
+                 th:text="${err}" class="error"></div>
 
             <!--Campo de edad-->
             <label th:text="#{valid-form.edad}" for="edad"></label>
             <label>
                 <input type="text" th:field="*{edad}">
             </label>
+            <div th:each="err: ${#fields.errors('edad')}"
+                 th:text="${err}" class="error"></div>
 
             <!--Campo de peso-->
             <label th:text="#{valid-form.peso}" for="peso"></label>
             <label>
                 <input type="text" th:field="*{peso}">
             </label>
+            <div th:each="err: ${#fields.errors('peso')}"
+                 th:text="${err}" class="error"></div>
 
             <br>
 
-            <!--TODO añadir th:selected-->
             <!--Campo de pais-->
             <label th:text="#{valid-form.pais}" for="pais"></label>
             <label>
                 <select name="paisSeleccionado" th:field="*{paisSeleccionado}">
                     <option th:each="pais: ${listaPaises}"
                         th:value="${pais.key}" th:text="${pais.value.getPais()}"
-                        ></option>
+                        th:selected="${datosFormulario.paisSeleccionado == pais.key}"></option>
                 </select>
             </label>
         </fieldset>
@@ -90,14 +105,15 @@
             <legend th:text="#{valid-form.datoscontacto}"></legend>
 
             <!--Campo de prefijo-->
-            <!--REVISAR he puesto que value sea el numero, prefijo, pero para comprobaciones futuras puede que haya que poner el pais (es)-->
             <!--TODO repintar con th:selected-->
             <label th:text="#{valid-form.prefijotelefono}" for="prefijo"></label>
             <label>
                 <select name="prefijo">
                     <option th:each="p: ${listaPaises}"
                         th:value="${p.value.getPrefijoTelefonicoPais()}"
-                        th:text="${p.value.getPrefijoTelefonicoPais()}"></option>
+                        th:text="${p.value.getPrefijoTelefonicoPais()}"
+                        th:selected="${datosFormulario.getPrefijoTelefonicoPais() == p.value.getPrefijoTelefonicoPais()}">
+                    </option>
                 </select>
             </label>
 
@@ -106,18 +122,24 @@
             <label>
                 <input type="text" th:field="*{telefono}">
             </label>
+            <div th:each="err: ${#fields.errors('telefono')}"
+                 th:text="${err}" class="error"></div>
 
             <!--Campo de email-->
             <label th:text="#{valid-form.email}" for="email"></label>
             <label>
                 <input type="text" th:field="*{email}">
             </label>
+            <div th:each="err: ${#fields.errors('email')}"
+                 th:text="${err}" class="error"></div>
 
             <!--Campo de URL-->
             <label th:text="#{valid-form.url}" for="url"></label>
             <label>
                 <input type="text" th:text="*{url}">
             </label>
+            <div th:each="err: ${#fields.errors('url')}"
+                 th:text="${err}" class="error"></div>
         </fieldset>
 
         <fieldset>
@@ -128,23 +150,21 @@
             <input type="file" multiple="multiple" th:field="*{archivosSeleccionados}">
 
             <!--Campo de musica-->
-            <!--TODO th:selected-->
-            <label th:text="#{valid-form.musica}" for=""></label>
+            <label th:text="#{valid-form.musica}" for="musicasSeleccionadas"></label>
             <label>
                 <select name="musicasSeleccionadas" multiple>
                     <option th:each="m: ${listaMusicas}"
                         th:value="${m.key}" th:text="${m.value}"
-                        ></option>
+                        th:selected="${datosFormulario.musicasSeleccionadas.contains(m.key)}"></option>
                 </select>
             </label>
 
             <!--Campo aficiones-->
-            <!--TODO th:checked-->
             <label th:text="#{valid-form.aficiones}" for="aficiones"></label>
             <label>
                 <input th:each="af: ${listaAficiones}"
                        th:value="${af.key}" th:text="${af.value}"
-                       name="aficiones" type="checkbox">
+                       th:field="*{aficionesSeleccionadas}" type="checkbox">
             </label>
 
             <label th:text="#{valid-form.comentarios}" for="comentarios"></label>
@@ -157,12 +177,13 @@
             <legend th:text="#{valid-form.operaciones}"></legend>
 
             <!--Campo de licencia-->
-            <!--TODO th:checked-->
             <label th:text="#{valid-form.licencia}" for="licencia"></label>
             <label>
-                <input type="checkbox" name="licencia" th:value="${true}"
+                <input type="checkbox" th:field="*{licencia}" th:value="${true}"
                 >
             </label>
+            <div th:each="err: ${#fields.errors('licencia')}"
+                 th:text="${err}" class="error"></div>
 
             <!--Envío con imagen-->
             <input type="image" name="enviar_imagen" src="/img/flecha_derecha.png" alt="enviar"
@@ -188,3 +209,8 @@
     </form>
 </body>
 </html>
+
+<!--pagina 14 -> funciones js-->
+<!--
+* = notnull, siempre debe enviarse
+-->
