@@ -10,7 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @AllArgsConstructor @NoArgsConstructor
@@ -56,7 +55,11 @@ public class DatosFormulario {
 
     private String paisSeleccionado;
     private MultipartFile archivosSeleccionados;
+
+    @MusicaMinima(1)
     private List<String> musicasSeleccionadas = new ArrayList<>();
+
+    @AficionesMinima(2)
     private List<String> aficionesSeleccionadas  = new ArrayList<>();
 
     @NotNull

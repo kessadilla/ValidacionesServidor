@@ -7,9 +7,6 @@ import java.time.LocalDate;
 
 public class TelefonoValidator implements ConstraintValidator<Telefono, String> {
 
-    LocalDate fechaNacimiento;
-
-
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         try {

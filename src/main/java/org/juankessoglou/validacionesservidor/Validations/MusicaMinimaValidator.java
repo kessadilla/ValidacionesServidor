@@ -3,17 +3,14 @@ package org.juankessoglou.validacionesservidor.Validations;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-import java.lang.reflect.Array;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
-public class MusicaValidator implements ConstraintValidator<Musica, List<String>> {
+public class MusicaMinimaValidator implements ConstraintValidator<MusicaMinima, List<String>> {
 
     int musica;
 
     @Override
-    public void initialize(Musica constraintAnnotation) {
+    public void initialize(MusicaMinima constraintAnnotation) {
         this.musica = constraintAnnotation.value();
     }
 

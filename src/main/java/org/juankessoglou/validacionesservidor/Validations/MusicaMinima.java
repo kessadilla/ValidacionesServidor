@@ -12,10 +12,10 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target({ FIELD })
 @Retention(RUNTIME)
-@Constraint(validatedBy = MusicaValidator.class)
+@Constraint(validatedBy = MusicaMinimaValidator.class)
 @Documented
 
-public @interface Musica {
+public @interface MusicaMinima {
 
     String message() default "{valid-form.err.musica.cantidad}";
     Class<?>[] groups() default { };
