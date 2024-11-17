@@ -1,13 +1,17 @@
 package org.juankessoglou.validacionesservidor.Model;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @AllArgsConstructor @NoArgsConstructor
 @Getter @Setter @ToString
 public class DatosFormulario {
+    @NotBlank
     private String nombre;
     private String clave;
     private String confirmarClave;
@@ -21,8 +25,8 @@ public class DatosFormulario {
     private String url;
     private String paisSeleccionado;
     private MultipartFile archivosSeleccionados;
-    private String musicasSeleccionadas;
-    private String aficionesSeleccionadas;
+    private List<String> musicasSeleccionadas;
+    private List<String> aficionesSeleccionadas;
     private String comentarios;
     private Boolean licencia;
 }

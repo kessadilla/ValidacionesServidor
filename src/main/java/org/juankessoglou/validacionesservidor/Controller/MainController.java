@@ -23,14 +23,15 @@ public class MainController {
 
     @ModelAttribute
     public void modeloGlobal(Model model) {
-        model.addAttribute("generoSeleccionado", Colecciones.getListaPaises());
-        model.addAttribute("paisSeleccionado", Colecciones.getListaGeneros());
-        model.addAttribute("musicasSeleccionadas", Colecciones.getListaAficiones());
-        model.addAttribute("aficionesSeleccionadas", Colecciones.getListaMusicas());
+        model.addAttribute("listaPaises", Colecciones.getListaPaises());
+        model.addAttribute("listaGeneros", Colecciones.getListaGeneros());
+        model.addAttribute("listaAficiones", Colecciones.getListaAficiones());
+        model.addAttribute("listaMusicas", Colecciones.getListaMusicas());
     }
 
     @RequestMapping(value = "/devuelve-formulario", method = GET)
-    public String devuelveFormulario(@ModelAttribute("datosFormulario") DatosFormulario datosFormulario){
+    public String devuelveFormulario(@ModelAttribute("datosFormulario") DatosFormulario datosFormulario, Model model) {
+        model.addAttribute("iteraciones", ++iteraciones);
         return "formulario";
     }
 

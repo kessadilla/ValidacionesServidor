@@ -5,6 +5,186 @@
     <title th:text="#{valid-form.formtitle}"></title>
 </head>
 <body>
-    <form action="formulario/devuelve-formulario" method="get"></form>
+    <h1 th:text="#{valid-form.formtitle}"></h1>
+    <h2 th:text="#{valid-form.iteraciones} + ${' ' + iteraciones}"></h2>
+
+    <form action="/formulario/recibe-parametros" method="get"
+        th:object="${datosFormulario}">
+
+        <!--Datos de usuario-->
+        <fieldset>
+            <legend th:text="#{valid-form.datosusuario}"></legend><!--Campo de nombre-->
+            <label th:text="#{valid-form.nombre}" for="nombre"></label>
+            <label>
+                <input type="text" th:field="*{nombre}">
+            </label>
+
+
+            <!--Campo de clave-->
+            <label th:text="#{valid-form.clave}" for="clave"></label>
+            <label>
+                <input type="password" th:field="*{clave}">
+            </label>
+
+
+            <!--Campo de confirmacion de clave-->
+            <label th:text="#{valid-form.confirmarClave}" for="confirmarClave"></label>
+            <label>
+                <input type="password" th:field="*{confirmarClave}">
+            </label>
+
+            <!--Mostrar claves TODO implementar lógica-->
+            <input type="button" th:value="#{valid-form.mostrarclave}">
+        </fieldset>
+
+        <!--Datos personales-->
+        <fieldset>
+            <legend th:text="#{valid-form.datospersonales}"></legend>
+
+            <!--Campo de genero-->
+            <!--TODO th:checked-->
+            <label th:text="#{valid-form.genero}" for="genero"></label>
+            <label>
+                <input th:each="genero: ${listaGeneros}"
+                    th:value="${genero.key}" th:text="${genero.value}"
+                    type="radio" name="generoSeleccionado"
+                    >
+            </label>
+
+
+            <!--TODO deseleccionar radios-->
+
+            <!--Campo de fecha de nacimiento-->
+            <label th:text="#{valid-form.fechanacimiento}" for="fechaNacimiento"></label>
+            <label>
+                <input type="text" th:field="*{fechaNacimiento}">
+            </label>
+
+            <!--Campo de edad-->
+            <label th:text="#{valid-form.edad}" for="edad"></label>
+            <label>
+                <input type="text" th:field="*{edad}">
+            </label>
+
+            <!--Campo de peso-->
+            <label th:text="#{valid-form.peso}" for="peso"></label>
+            <label>
+                <input type="text" th:field="*{peso}">
+            </label>
+
+            <br>
+
+            <!--TODO añadir th:selected-->
+            <!--Campo de pais-->
+            <label th:text="#{valid-form.pais}" for="pais"></label>
+            <label>
+                <select name="paisSeleccionado" th:field="*{paisSeleccionado}">
+                    <option th:each="pais: ${listaPaises}"
+                        th:value="${pais.key}" th:text="${pais.value.getPais()}"
+                        ></option>
+                </select>
+            </label>
+        </fieldset>
+
+        <fieldset>
+            <legend th:text="#{valid-form.datoscontacto}"></legend>
+
+            <!--Campo de prefijo-->
+            <!--REVISAR he puesto que value sea el numero, prefijo, pero para comprobaciones futuras puede que haya que poner el pais (es)-->
+            <!--TODO repintar con th:selected-->
+            <label th:text="#{valid-form.prefijotelefono}" for="prefijo"></label>
+            <label>
+                <select name="prefijo">
+                    <option th:each="p: ${listaPaises}"
+                        th:value="${p.value.getPrefijoTelefonicoPais()}"
+                        th:text="${p.value.getPrefijoTelefonicoPais()}"></option>
+                </select>
+            </label>
+
+            <!--Campo de telefono-->
+            <label th:text="#{valid-form.telefono}" for="telefono"></label>
+            <label>
+                <input type="text" th:field="*{telefono}">
+            </label>
+
+            <!--Campo de email-->
+            <label th:text="#{valid-form.email}" for="email"></label>
+            <label>
+                <input type="text" th:field="*{email}">
+            </label>
+
+            <!--Campo de URL-->
+            <label th:text="#{valid-form.url}" for="url"></label>
+            <label>
+                <input type="text" th:text="*{url}">
+            </label>
+        </fieldset>
+
+        <fieldset>
+            <legend th:text="#{valid-form.otrainfo}"></legend>
+
+            <!--Campo de archivos-->
+            <label th:text="#{valid-form.archivos}" for="archivosSeleccionados"></label>
+            <input type="file" multiple="multiple" th:field="*{archivosSeleccionados}">
+
+            <!--Campo de musica-->
+            <!--TODO th:selected-->
+            <label th:text="#{valid-form.musica}" for=""></label>
+            <label>
+                <select name="musicasSeleccionadas" multiple>
+                    <option th:each="m: ${listaMusicas}"
+                        th:value="${m.key}" th:text="${m.value}"
+                        ></option>
+                </select>
+            </label>
+
+            <!--Campo aficiones-->
+            <!--TODO th:checked-->
+            <label th:text="#{valid-form.aficiones}" for="aficiones"></label>
+            <label>
+                <input th:each="af: ${listaAficiones}"
+                       th:value="${af.key}" th:text="${af.value}"
+                       name="aficiones" type="checkbox">
+            </label>
+
+            <label th:text="#{valid-form.comentarios}" for="comentarios"></label>
+            <label>
+                <textarea th:text="*{comentarios}"></textarea>
+            </label>
+        </fieldset>
+
+        <fieldset>
+            <legend th:text="#{valid-form.operaciones}"></legend>
+
+            <!--Campo de licencia-->
+            <!--TODO th:checked-->
+            <label th:text="#{valid-form.licencia}" for="licencia"></label>
+            <label>
+                <input type="checkbox" name="licencia" th:value="${true}"
+                >
+            </label>
+
+            <!--Envío con imagen-->
+            <input type="image" name="enviar_imagen" src="/img/flecha_derecha.png" alt="enviar"
+                width="100" height="100">
+
+            <!--Vaciar campos-->
+            <!--TODO resetee todo. ni idea de como hacerlo-->
+            <input type="button" th:value="#{valid-form.vacio}">
+
+            <!--Reseteo-->
+            <input type="reset" th:value="#{valid-form.reset}">
+
+            <!--Submit-->
+            <input type="submit" th:value="#{valid-form.enviar}">
+
+            <!--Cambio de idioma-->
+            <!--TODO implementar esta cochinada voy a llorar-->
+            <label th:text="#{valid-form.idioma}" for="idioma"></label>
+            <!--pensar de donde sacar una lista de idiomas por la cara-->
+            </label>
+
+        </fieldset>
+    </form>
 </body>
 </html>
