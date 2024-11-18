@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
@@ -56,9 +57,9 @@ public class MainController {
     public String recibeParametrosYRepinta(Model model,
                                            @Valid @ModelAttribute("datosFormulario") DatosFormulario datosFormulario,
                                            BindingResult bindingResult,
-                                           @RequestParam Map<String, String> mapaParametros,
                                            @RequestParam(required = false, name = "enviar_imagen.x") String enviarImagen_x,
-                                           @RequestParam(required = false, name = "enviar_imagen.y") String enviarImagen_y) {
+                                           @RequestParam(required = false, name = "enviar_imagen.y") String enviarImagen_y,
+                                           @RequestParam Map<String, String> mapaParametros) {
 
         List<String> erroresEdadCoincide = new ArrayList<>();
         List<String> erroresClavesCoinciden = new ArrayList<>();
@@ -84,7 +85,8 @@ public class MainController {
         model.addAttribute("enviar_img_x", enviarImagen_x = (enviarImagen_x == null) ? "0" : enviarImagen_x);
         model.addAttribute("enviar_img_y", enviarImagen_y = (enviarImagen_y == null) ? "0" : enviarImagen_y);
 
-        model.addAttribute(mapaParametros.size());
+        model.addAttribute("numParam", mapaParametros.size());
+        model.addAttribute("params" , mapaParametros);
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("mensajeNOK", "ALERTA: Formulario con errores");

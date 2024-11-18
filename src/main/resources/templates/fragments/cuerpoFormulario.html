@@ -61,7 +61,7 @@
     <!--Campo de fecha de nacimiento-->
     <label th:text="#{valid-form.fechanacimiento}" for="fechaNacimiento"></label>
     <label>
-      <input type="text" th:field="*{fechaNacimiento}" th:placeholder="#{valid-form.ph.fecha}" tabindex="">
+      <input type="text" th:field="*{fechaNacimiento}" th:placeholder="#{valid-form.ph.fecha}" tabindex="7">
     </label>
     <span th:each="err: ${#fields.errors('fechaNacimiento')}"
           th:text="${err + '. '}" class="error"></span>
@@ -70,7 +70,7 @@
     <!--Campo de edad-->
     <label th:text="#{valid-form.edad}" for="edad"></label>
     <label>
-      <input type="text" th:field="*{edad}" th:placeholder="#{valid-form.ph.edad}" tabindex="">
+      <input type="text" th:field="*{edad}" th:placeholder="#{valid-form.ph.edad}" tabindex="8">
     </label>
     <span th:each="err : ${erroresEdadCoincide}"
           th:text="${err}" class="error"></span>
@@ -80,7 +80,7 @@
     <!--Campo de peso-->
     <label th:text="#{valid-form.peso}" for="peso"></label>
     <label>
-      <input type="text" th:field="*{peso}" th:placeholder="#{valid-form.ph.peso}" tabindex="">
+      <input type="text" th:field="*{peso}" th:placeholder="#{valid-form.ph.peso}" tabindex="9">
     </label>
     <span th:each="err: ${#fields.errors('peso')}"
           th:text="${err}" class="error"></span>
@@ -90,7 +90,7 @@
     <!--Campo de pais-->
     <label th:text="#{valid-form.pais}" for="pais"></label>
     <label>
-      <select name="paisSeleccionado" th:field="*{paisSeleccionado}" tabindex="">
+      <select name="paisSeleccionado" th:field="*{paisSeleccionado}" tabindex="10">
         <option th:each="pais: ${listaPaises}"
                 th:value="${pais.key}" th:text="${pais.value.getPais()}"
                 th:selected="${datosFormulario.paisSeleccionado == pais.key}"></option>
@@ -104,13 +104,12 @@
     <!--Campo de prefijo-->
     <label th:text="#{valid-form.prefijotelefono}" for="prefijo"></label>
     <label>
-      <select th:field="*{prefijoTelefonicoPais}" tabindex="">
+      <select th:field="*{prefijoTelefonicoPais}" tabindex="11">
         <option th:each="p: ${listaPaises}"
                 th:value="${p.value.getPrefijoTelefonicoPais()}"
                 th:selected="${datosFormulario.getPrefijoTelefonicoPais() == p.value.getPrefijoTelefonicoPais()}"
                 th:text="${'+' + p.value.getPrefijoTelefonicoPais()}">
 
-          <!--REVISAR por qué no aparece la bendita imagen dnfnerveñrnvñe-->
           <img th:src="@{/img/banderas/{bandera}(bandera=${p.value.getNombreArchivoBandera()})}">
         </option>
       </select>
@@ -120,7 +119,7 @@
     <!--Campo de telefono-->
     <label th:text="#{valid-form.telefono}" for="telefono"></label>
     <label>
-      <input type="text" th:field="*{telefono}" th:placeholder="#{valid-form.ph.tlf}" tabindex="">
+      <input type="text" th:field="*{telefono}" th:placeholder="#{valid-form.ph.tlf}" tabindex="12">
     </label>
     <span th:each="err: ${#fields.errors('telefono')}"
           th:text="${err}" class="error"></span>
@@ -130,7 +129,7 @@
     <!--Campo de email-->
     <label th:text="#{valid-form.email}" for="email"></label>
     <label>
-      <input type="text" th:field="*{email}" th:placeholder="#{valid-form.ph.email}" tabindex="">
+      <input type="text" th:field="*{email}" th:placeholder="#{valid-form.ph.email}" tabindex="13">
     </label>
     <span th:each="err: ${#fields.errors('email')}"
           th:text="${err}" class="error"></span><br>
@@ -142,7 +141,7 @@
     <!--Campo de URL-->
     <label th:text="#{valid-form.url}" for="url"></label>
     <label>
-      <input type="text" th:field="*{url}" th:placeholder="#{valid-form.ph.url}" tabindex="">
+      <input type="text" th:field="*{url}" th:placeholder="#{valid-form.ph.url}" tabindex="14">
     </label>
     <span th:each="err: ${#fields.errors('url')}"
           th:text="${err}" class="error"></span>
@@ -160,7 +159,7 @@
     <!--Campo de musica-->
     <label th:text="#{valid-form.musica}" for="musicasSeleccionadas"></label>
     <label>
-      <select name="musicasSeleccionadas" multiple tabindex="">
+      <select name="musicasSeleccionadas" multiple tabindex="15">
         <option th:each="m: ${listaMusicas}"
                 th:value="${m.key}" th:text="${m.value}"
                 th:selected="${datosFormulario.musicasSeleccionadas.contains(m.key)}"></option>
@@ -176,22 +175,22 @@
     <label>
       <input th:each="af: ${listaAficiones}"
              th:value="${af.key}" th:text="${af.value}"
-             th:field="*{aficionesSeleccionadas}" type="checkbox" tabindex="">
+             th:field="*{aficionesSeleccionadas}" type="checkbox" tabindex="16">
     </label>
     <span th:each="err: ${#fields.errors('aficionesSeleccionadas')}"
           th:text="${err}" class="error"></span>
 
     <br><br>
 
-    <input type="button" onclick="seleccionarCheckboxes('aficionesSeleccionadas')" th:value="#{valid-form.aficiones.selec}">
-    <input type="button" onclick="deseleccionarCheckboxes('aficionesSeleccionadas')" th:value="#{valid-form.aficiones.unselec}">
+    <input type="button" onclick="seleccionarCheckboxes('aficionesSeleccionadas')" th:value="#{valid-form.aficiones.selec}" tabindex="17">
+    <input type="button" onclick="deseleccionarCheckboxes('aficionesSeleccionadas')" th:value="#{valid-form.aficiones.unselec}" tabindex="18">
 
     <br><br>
 
     <!--Campo de comentarios-->
     <label th:text="#{valid-form.comentarios}" for="comentarios"></label>
     <label>
-      <textarea th:field="*{comentarios}" th:placeholder="#{valid-form.ph.comentarios}" tabindex=""></textarea>
+      <textarea th:field="*{comentarios}" th:placeholder="#{valid-form.ph.comentarios}" tabindex="19"></textarea>
     </label>
   </fieldset>
 
@@ -202,7 +201,7 @@
     <label th:text="#{valid-form.licencia}" for="licencia"></label>
     <label>
       <input type="checkbox" th:field="*{licencia}" th:value="${true}"
-             tabindex="">
+             tabindex="20">
     </label>
     <span th:each="err: ${#fields.errors('licencia')}"
           th:text="${err}" class="error"></span>
@@ -211,28 +210,26 @@
 
     <!--Envío con imagen-->
     <input type="image" name="enviar_imagen" src="/img/flecha_derecha.png" alt="enviar"
-           width="100" height="100" tabindex=""><br><br>
+           width="100" height="100" tabindex="21" onclick="confirmarEnvio('formulario')"><br><br>
 
     <!--Vaciar campos-->
-    <input type="button" th:value="#{valid-form.vacio}" onclick="vaciarFormulario()" tabindex="">
+    <input type="button" th:value="#{valid-form.vacio}" onclick="vaciarFormulario()" tabindex="22">
 
     <!--Reseteo-->
-    <input type="reset" th:value="#{valid-form.reset}" tabindex="">
+    <input type="reset" th:value="#{valid-form.reset}" tabindex="23" onclick="confirmaReseteo('formulario')">
 
     <!--Submit-->
-    <input type="submit" th:value="#{valid-form.enviar}" tabindex=""><br><br>
+    <input type="submit" th:value="#{valid-form.enviar}" tabindex="24" onclick="confirmarEnvio('formulario')"><br><br>
 
     <!--Cambio de idioma-->
-    <label th:text="#{valid-form.idioma}" for="idioma"></label>
-    <label>
-      <select name="idioma">
-        <option th:each="p: ${listaPaises}"
-                th:if="${p.value.muestraIdioma}"
-                th:value="${p.key}"
-                th:text="${p.value.getIdioma()}"></option>
-      </select>
-    </label>
+    <label for="lang" th:text="#{valid-form.idioma}"></label>
+    <select name="lang" id="lang" onchange="cambiarIdioma()" tabindex="25">
+      <option value=""></option>
+      <option th:each="p: ${listaPaises}"
+        th:value="${p.key}" th:text="${p.value.getIdioma()}"></option>
+    </select>
   </fieldset>
 
-  <span th:text="${'Imagen.x: ' + enviar_img_x + ', e imagen.y: ' + enviar_img_y}"></span>
+  <span th:text="${'Imagen.x: ' + enviar_img_x + ', e imagen.y: ' + enviar_img_y}"></span><br>
+  <span th:text="${'Se han recibido ' + numParam + ' parámetros: ' + params}"></span>
 </form>
