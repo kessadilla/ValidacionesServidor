@@ -11,15 +11,15 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target({ElementType.TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = EdadCoincideValidator.class)
+@Constraint(validatedBy = ClavesCoincidenValidator.class)
 @Documented
 
-public @interface EdadCoincide {
+public @interface ClavesCoinciden {
 
-    String message() default "{valid-form.err.edad.coincide}";
+    String message() default "{valid-form.err.clave.coincide}";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 
-    String fecha();
-    String edad();
+    String clave1();
+    String clave2();
 }

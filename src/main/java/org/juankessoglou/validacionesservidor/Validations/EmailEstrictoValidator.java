@@ -15,6 +15,11 @@ public class EmailEstrictoValidator implements ConstraintValidator<EmailEstricto
                 Pattern.compile("[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}");
         Matcher matcher = pattern.matcher(value);
         try {
+
+            if (value.equals("") || value == null) {
+                return true;
+            }
+
             return matcher.matches();
 
         } catch (Exception e) {

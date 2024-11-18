@@ -10,6 +10,11 @@ public class TelefonoValidator implements ConstraintValidator<Telefono, String> 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         try {
+
+            if (value == null || value.equals("")) {
+                return true;
+            }
+
             if (value.length() != 9) return false;
 
             Integer.parseInt(value);
