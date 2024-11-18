@@ -18,9 +18,9 @@ public class Colecciones {
         listaGeneros.put("M", "{valid-form.generos-masculino}");
         listaGeneros.put("O", "{valid-form.generos-otro}");
 
-        listaPaises.put("es", new Pais("{valid-form.paises-pais-espania}", "{valid-form.paises-idioma-castellano}", "34", true, "espania.png"));
+        listaPaises.put("es", new Pais("{valid-form.paises-pais-espania}", "{valid-form.paises-idioma-castellano}", "34", false, "espania.png"));
         listaPaises.put("fr", new Pais("{valid-form.paises-pais-francia}", "{valid-form.paises-idioma-frances}", "33", false, "francia.png"));
-        listaPaises.put("it", new Pais("{valid-form.paises-pais-italia}", "{valid-form.paises-idioma-italiano}", "39", false, "italia.png"));
+        listaPaises.put("it", new Pais("{valid-form.paises-pais-italia}", "{valid-form.paises-idioma-italiano}", "39", true, "italia.png"));
         listaPaises.put("pt", new Pais("{valid-form.paises-pais-portugal}", "{valid-form.paises-idioma-portugues}", "351", false, "portugal.png"));
         listaPaises.put("en", new Pais("{valid-form.paises-pais-uk}", "{valid-form.paises-idioma-ingles}", "44", true, "uk.png"));
 

@@ -225,8 +225,8 @@
     <label for="lang" th:text="#{valid-form.idioma}"></label>
     <select name="lang" id="lang" onchange="cambiarIdioma()" tabindex="25">
       <option value=""></option>
-      <option th:each="p: ${listaPaises}"
-        th:value="${p.key}" th:text="${p.value.getIdioma()}"></option>
+      <option th:each="p: ${listaPaises}" th:if="${p.value.muestraIdioma}"
+              th:value="${p.key}" th:text="${p.value.getIdioma()}"></option>
     </select>
   </fieldset>
 
