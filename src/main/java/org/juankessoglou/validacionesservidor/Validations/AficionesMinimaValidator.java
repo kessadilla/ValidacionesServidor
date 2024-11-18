@@ -17,6 +17,10 @@ public class AficionesMinimaValidator implements ConstraintValidator<AficionesMi
     @Override
     public boolean isValid(List<String> value, ConstraintValidatorContext context) {
         try {
+
+            if (value == null || value.isEmpty()) {
+                return true;
+            }
             return aficiones <= value.size();
         } catch (Exception e) {
             return false;

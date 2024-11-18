@@ -11,14 +11,15 @@ public class EmailEstrictoValidator implements ConstraintValidator<EmailEstricto
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        Pattern pattern =
-                Pattern.compile("[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}");
-        Matcher matcher = pattern.matcher(value);
+
         try {
 
             if (value.equals("") || value == null) {
                 return true;
             }
+            Pattern pattern =
+                    Pattern.compile("[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}");
+            Matcher matcher = pattern.matcher(value);
 
             return matcher.matches();
 

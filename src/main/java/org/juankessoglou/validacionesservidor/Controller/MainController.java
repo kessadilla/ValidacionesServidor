@@ -70,11 +70,14 @@ public class MainController {
             if (error.getCode() != null && error.getCode().equals("EdadCoincide")) {
                 erroresEdadCoincide.add(error.getDefaultMessage());
             }
-            if (error.getCode() != null && error.getCode().equals("ClavesCoinciden")) {
+            else if (error.getCode() != null && error.getCode().equals("ClavesCoinciden")) {
                 erroresClavesCoinciden.add(error.getDefaultMessage());
             }
-            if (error.getCode() != null && error.getCode().equals("Contacto")) {
+            else if (error.getCode() != null && error.getCode().equals("Contacto")) {
                 erroresContactoRequerido.add(error.getDefaultMessage());
+            }
+            else if (error.getCode() != null) {
+                System.out.println(error.getDefaultMessage());
             }
         }
 
@@ -90,6 +93,7 @@ public class MainController {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("mensajeNOK", "ALERTA: Formulario con errores");
+            System.out.println(bindingResult.getAllErrors());
             return "formulario";
         }
         model.addAttribute("mensajeOK", "ALELUYA. Formulario sin errores");

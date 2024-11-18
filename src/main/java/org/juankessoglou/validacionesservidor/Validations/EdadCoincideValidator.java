@@ -2,6 +2,7 @@ package org.juankessoglou.validacionesservidor.Validations;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import org.yaml.snakeyaml.util.EnumUtils;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
@@ -22,7 +23,9 @@ public class EdadCoincideValidator implements ConstraintValidator<EdadCoincide, 
     public boolean isValid(Object value, ConstraintValidatorContext context) {
         try {
 
-
+            if (value == null){
+                return true;
+            }
             Field fechaField = value.getClass().getDeclaredField(this.fechaNacimiento);
             fechaField.setAccessible(true);
             LocalDate fechaNacimiento = (LocalDate) fechaField.get(value);

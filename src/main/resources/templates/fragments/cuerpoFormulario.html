@@ -5,7 +5,8 @@
 <h3 class="correcto" th:text="${mensajeOK}"></h3>
 
 <form action="/formulario/recibe-parametros" method="post"
-      th:object="${datosFormulario}" id="formulario">
+      th:object="${datosFormulario}" id="formulario"
+      enctype="multipart/form-data">
 
   <!--Datos de usuario-->
   <fieldset>
@@ -54,7 +55,9 @@
              th:value="${genero.key}" th:text="${genero.value}"
              type="radio" name="generoSeleccionado"
              th:field="*{generoSeleccionado}">
-    </label>
+    </label><br>
+    <span th:each="err: ${#fields.errors('generoSeleccionado')}"
+          th:text="${err + '. '}" class="error"></span>
     <br><br>
     <button type="button" onclick="deseleccionarRadios('generoSeleccionado')" th:text="#{valid-form.borrar-genero}" tabindex="6"></button><br><br>
 
@@ -95,7 +98,9 @@
                 th:value="${pais.key}" th:text="${pais.value.getPais()}"
                 th:selected="${datosFormulario.paisSeleccionado == pais.key}"></option>
       </select>
-    </label>
+    </label><br>
+    <span th:each="err: ${#fields.errors('paisSeleccionado')}"
+          th:text="${err + '. '}" class="error"></span>
   </fieldset>
 
   <fieldset>
@@ -113,7 +118,9 @@
           <img th:src="@{/img/banderas/{bandera}(bandera=${p.value.getNombreArchivoBandera()})}">
         </option>
       </select>
-    </label>
+    </label><br>
+    <span th:each="err: ${#fields.errors('prefijoTelefonicoPais')}"
+          th:text="${err + '. '}" class="error"></span>
     <br><br>
 
     <!--Campo de telefono-->
@@ -122,7 +129,7 @@
       <input type="text" th:field="*{telefono}" th:placeholder="#{valid-form.ph.tlf}" tabindex="12">
     </label>
     <span th:each="err: ${#fields.errors('telefono')}"
-          th:text="${err}" class="error"></span>
+          th:text="${err + '. '}" class="error"></span>
 
     <br><br>
 
@@ -132,9 +139,9 @@
       <input type="text" th:field="*{email}" th:placeholder="#{valid-form.ph.email}" tabindex="13">
     </label>
     <span th:each="err: ${#fields.errors('email')}"
-          th:text="${err}" class="error"></span><br>
+          th:text="${err + '. '}" class="error"></span><br>
     <span th:each="err: ${erroresContactoRequerido}"
-          th:text="${err}" class="error"></span>
+          th:text="${err + '. '}" class="error"></span>
 
     <br><br>
 
@@ -144,7 +151,7 @@
       <input type="text" th:field="*{url}" th:placeholder="#{valid-form.ph.url}" tabindex="14">
     </label>
     <span th:each="err: ${#fields.errors('url')}"
-          th:text="${err}" class="error"></span>
+          th:text="${err + '. '}" class="error"></span>
   </fieldset>
 
   <fieldset>
@@ -166,7 +173,7 @@
       </select>
     </label>
     <span th:each="err: ${#fields.errors('musicasSeleccionadas')}"
-          th:text="${err}" class="error"></span>
+          th:text="${err + '. '}" class="error"></span>
 
     <br><br>
 
@@ -178,7 +185,7 @@
              th:field="*{aficionesSeleccionadas}" type="checkbox" tabindex="16">
     </label>
     <span th:each="err: ${#fields.errors('aficionesSeleccionadas')}"
-          th:text="${err}" class="error"></span>
+          th:text="${err + '. '}" class="error"></span>
 
     <br><br>
 
@@ -204,7 +211,7 @@
              tabindex="20">
     </label>
     <span th:each="err: ${#fields.errors('licencia')}"
-          th:text="${err}" class="error"></span>
+          th:text="${err + '. '}" class="error"></span>
 
     <br><br>
 

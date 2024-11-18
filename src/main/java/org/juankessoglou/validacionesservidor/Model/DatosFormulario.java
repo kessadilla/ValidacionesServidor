@@ -32,7 +32,7 @@ public class DatosFormulario {
     @Caracter
     private String confirmarClave;
 
-    @NotNull // TODO checkeo de siglas
+    @NotNull @GeneroExiste
     private String generoSeleccionado;
 
     @NotNull @FechaPasada(18)
@@ -45,7 +45,7 @@ public class DatosFormulario {
     @NotNull
     private Float peso;
 
-    @NotNull // TODO checkeo de prefijos
+    @NotNull @PrefijoExiste
     private String prefijoTelefonicoPais = "33";
 
     @NotNull @Telefono
@@ -57,7 +57,9 @@ public class DatosFormulario {
     @NotNull
     private String url;
 
+    @PaisExiste
     private String paisSeleccionado = "pt";
+
     private MultipartFile archivosSeleccionados;
 
     @MusicaMinima(1)
