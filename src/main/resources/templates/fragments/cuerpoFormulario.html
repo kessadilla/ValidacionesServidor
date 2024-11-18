@@ -115,7 +115,7 @@
                 th:selected="${datosFormulario.getPrefijoTelefonicoPais() == p.value.getPrefijoTelefonicoPais()}"
                 th:text="${'+' + p.value.getPrefijoTelefonicoPais()}">
 
-          <img th:src="@{/img/banderas/{bandera}(bandera=${p.value.getNombreArchivoBandera()})}">
+          <img th:src="@{/img/banderas/{bandera}(bandera=${p.value.getNombreArchivoBandera()})}" alt="bandera">
         </option>
       </select>
     </label><br>
@@ -238,5 +238,5 @@
   </fieldset>
 
   <span th:text="${'Imagen.x: ' + enviar_img_x + ', e imagen.y: ' + enviar_img_y}"></span><br>
-  <span th:text="${'Se han recibido ' + numParam + ' parámetros: ' + params}"></span>
+  <span th:text="${'Se han recibido ' + param.size() + ' parámetros: ' + params}"></span>
 </form>

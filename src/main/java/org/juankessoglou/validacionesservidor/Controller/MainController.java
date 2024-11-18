@@ -64,7 +64,6 @@ public class MainController {
         List<String> erroresEdadCoincide = new ArrayList<>();
         List<String> erroresClavesCoinciden = new ArrayList<>();
         List<String> erroresContactoRequerido = new ArrayList<>();
-        List<String> otrosErrores = new ArrayList<>();
 
         for (ObjectError error : bindingResult.getGlobalErrors()) {
             if (error.getCode() != null && error.getCode().equals("EdadCoincide")) {
@@ -76,9 +75,6 @@ public class MainController {
             else if (error.getCode() != null && error.getCode().equals("Contacto")) {
                 erroresContactoRequerido.add(error.getDefaultMessage());
             }
-            else if (error.getCode() != null) {
-                System.out.println(error.getDefaultMessage());
-            }
         }
 
         model.addAttribute("erroresEdadCoincide", erroresEdadCoincide);
@@ -88,7 +84,6 @@ public class MainController {
         model.addAttribute("enviar_img_x", enviarImagen_x = (enviarImagen_x == null) ? "0" : enviarImagen_x);
         model.addAttribute("enviar_img_y", enviarImagen_y = (enviarImagen_y == null) ? "0" : enviarImagen_y);
 
-        model.addAttribute("numParam", mapaParametros.size());
         model.addAttribute("params" , mapaParametros);
 
         if (bindingResult.hasErrors()) {
