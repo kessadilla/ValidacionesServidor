@@ -6,14 +6,12 @@ import jakarta.validation.constraints.NotNull;
 import org.juankessoglou.validacionesservidor.Model.Colecciones;
 import org.juankessoglou.validacionesservidor.Model.DatosFormulario;
 import org.juankessoglou.validacionesservidor.Model.RequestInfoDTO;
-import org.springframework.format.annotation.NumberFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
@@ -49,7 +47,7 @@ public class MainController {
 
 
     @RequestMapping(value = "/devuelve-formulario", method = GET)
-    public String devuelveFormulario(@ModelAttribute("datosFormulario") DatosFormulario datosFormulario, Model model) {
+    public String devuelveFormulario(@ModelAttribute("datosFormulario") DatosFormulario datosFormulario) {
         return "formulario";
     }
 
@@ -81,8 +79,8 @@ public class MainController {
         model.addAttribute("erroresClavesCoinciden", erroresClavesCoinciden);
         model.addAttribute("erroresContactoRequerido", erroresContactoRequerido);
 
-        model.addAttribute("enviar_img_x", enviarImagen_x = (enviarImagen_x == null) ? "0" : enviarImagen_x);
-        model.addAttribute("enviar_img_y", enviarImagen_y = (enviarImagen_y == null) ? "0" : enviarImagen_y);
+        model.addAttribute("enviar_img_x", (enviarImagen_x == null) ? "0" : enviarImagen_x);
+        model.addAttribute("enviar_img_y", (enviarImagen_y == null) ? "0" : enviarImagen_y);
 
         model.addAttribute("params" , mapaParametros);
 
