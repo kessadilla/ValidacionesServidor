@@ -27,21 +27,23 @@ public class PersonaServiceImpl implements PersonaService {
 
     @Override
     public void creaPersona(Persona persona) {
-
+        DatosPersona.addPersona(persona);
     }
 
     @Override
     public void actualizaPersona(Persona persona) {
-
+        if (!DatosPersona.actualizarPersona(persona)){
+            throw new PersonaNoEncontradaException("No se puede eliminar una persona inexistente");
+        }
     }
 
     @Override
     public void eliminaPersona(Persona persona) {
-
+        DatosPersona.eliminarPersona(persona);
     }
 
     @Override
     public void eliminaTodasPersonas() {
-
+        DatosPersona.eliminarTodasPersonas();
     }
 }
